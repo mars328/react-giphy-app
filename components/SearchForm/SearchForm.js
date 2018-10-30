@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import './SearchForm.css';
 
 export default function SearchForm({onSearchSubmitted}) {
   let searchField = null;
