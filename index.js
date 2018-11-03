@@ -1,23 +1,18 @@
-import 'babel-regenerator-runtime';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import reducer from './reducers';
-import {searchSuccess} from './actions/search';
-import App from './components/App/App.container';
 import {createLogger} from 'redux-logger';
-import searchSaga from './sagas/search';
-import createSagaMiddleware from 'redux-saga';
-import {Router, Route} from 'react-router';
-import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
-import createBrowserHistory from 'history/createBrowserHistory';
+import {searchSuccess} from './actions/search';
+import {Router, Route} from 'react-router'
+import {ConnectedRouter, routerMiddleware} from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
 
-const sagas = createSagaMiddleware();
-const history = createBrowserHistory();
-const store = createStore(reducer, applyMiddleware(routerMiddleware(history), createLogger(), sagas));
+import App from './components/App/App';
+const history = createHistory();
 
-sagas.run(searchSaga);
+const store = createStore(reducer, applyMiddleware(routerMiddleware(history), createLogger()));
 
 ReactDOM.render(
   <Provider store={store}>
